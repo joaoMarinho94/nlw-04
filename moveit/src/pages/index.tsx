@@ -8,6 +8,7 @@ import { Profile } from '../components/Profile'
 import Head from 'next/head'
 
 import { Container } from '../styles/pages/Home'
+import { ChallengeBox } from '../components/ChallengeBox'
 
 const Home: React.FC = () => {
   return (
@@ -24,7 +25,9 @@ const Home: React.FC = () => {
           <CompletedChallenges />
           <CountDown />
         </div>
-        <div></div>
+        <div>
+          <ChallengeBox />
+        </div>
       </section>
     </Container>
   )
