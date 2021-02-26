@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { ChallengesContext } from '../contexts/ChallengesContext'
 
 import { Container, CountdownButton } from '../styles/components/CountDown'
 
 let countdownTimeout: number
 
 export const CountDown: React.FC = () => {
+  const { startNewChallenge } = useContext(ChallengesContext)
+
   const [time, setTime] = useState(0.05 * 60)
   const [isActive, setIsActive] = useState(false)
   const [hasFinished, setHasFinished] = useState(false)
@@ -33,6 +36,7 @@ export const CountDown: React.FC = () => {
     } else if (isActive && time === 0) {
       setHasFinished(true)
       setIsActive(false)
+      startNewChallenge()
     }
   }, [isActive, time])
 
