@@ -12,7 +12,7 @@ export const Container = styled.header`
     flex: 1;
     height: 4px;
     border-radius: 4px;
-    background: ${props => props.theme.colors.grayLine};
+    background: ${({ theme }) => theme.colors.grayLine};
     margin: 0 1.5rem;
     position: relative;
   }
@@ -20,7 +20,7 @@ export const Container = styled.header`
   & > div > div {
     height: 4px;
     border-radius: 4px;
-    background: ${props => props.theme.colors.green};
+    background: ${({ theme }) => theme.colors.green};
   }
 
   span.current-experience {

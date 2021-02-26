@@ -5,7 +5,7 @@ export const Container = styled.div`
   align-items: center;
   font-family: Rajdhani;
   font-weight: 600;
-  color: ${props => props.theme.colors.title};
+  color: ${({ theme }) => theme.colors.title};
 
   & > div {
     flex: 1;
@@ -14,7 +14,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-evenly;
 
-    background: ${props => props.theme.colors.white};
+    background: ${({ theme }) => theme.colors.white};
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
     font-size: 8.5rem;
@@ -51,15 +51,31 @@ export const CountdownButton = styled.button`
   border: 0;
   border-radius: 5px;
 
-  background: ${props => props.theme.colors.blue};
-  color: ${props => props.theme.colors.white};
+  background: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.white};
 
   font-size: 1.25rem;
   font-weight: 600;
 
   transition: background-color 0.2s;
 
-  &:hover {
-    background: ${props => props.theme.colors.blueDark};
+  &:not(:disabled):hover {
+    background: ${({ theme }) => theme.colors.blueDark};
+  }
+
+  &.active {
+    background: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.title};
+  }
+
+  &.active:not(:disabled):hover {
+    background: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  &:disabled {
+    background: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.text};
+    cursor: not-allowed;
   }
 `

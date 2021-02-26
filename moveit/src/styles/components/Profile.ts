@@ -18,7 +18,7 @@ export const Container = styled.div`
   div strong {
     font-size: 1.5rem;
     font-weight: 600;
-    color: ${props => props.theme.colors.title};
+    color: ${({ theme }) => theme.colors.title};
   }
 
   div p {
