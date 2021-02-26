@@ -18,7 +18,7 @@ describe("Surveys", () => {
     expect(response.body).toHaveProperty("id");
   });
 
-  it("SShould be able to get all surveys", async () => {
+  it("Should be able to get all surveys", async () => {
     await request(app).post("/surveys").send({
       title: "Title Example",
       description: "Descrition Example",

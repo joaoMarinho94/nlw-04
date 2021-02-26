@@ -1,15 +1,18 @@
-import styles from '../styles/components/Profile.module.css'
+import React from 'react'
 
-export function Profile() {
+import { Container } from '../styles/components/Profile'
+
+export const Profile: React.FC = () => {
   return (
-    <div className={styles.profileContainer}>
-      <img src="https://github.com/joaoMarinho94.png" alt="joao" />
+    <Container>
+      <img src="https://github.com/joaoMarinho94.png" alt="imagem" />
       <div>
         <strong>João Paulo</strong>
         <p>
-          <img src="icons/level.svg" alt="level"/>
-          Level 1</p>
+          <img src="icons/level.svg" alt="level" />
+          Level 1
+        </p>
       </div>
-    </div>
-  );
+    </Container>
+  )
 }

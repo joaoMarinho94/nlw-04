@@ -1,10 +1,12 @@
-import styles from "../styles/components/CompletedChallenges.module.css";
+import React from 'react'
 
-export function CompletedChallenges() {
+import { Container } from '../styles/components/CompletedChallenges'
+
+export const CompletedChallenges: React.FC = () => {
   return (
-    <div className={styles.completedChallengesContainer}>
+    <Container>
       <span>Desafios completos</span>
       <span>5</span>
-    </div>
-  );
+    </Container>
+  )
 }

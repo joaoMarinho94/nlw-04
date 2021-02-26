@@ -1,15 +1,17 @@
-import { CompletedChallenges } from "../components/CompletedChallenges";
-import { CountDown } from "../components/CountDown";
-import { ExperienceBar } from "../components/ExperienceBar";
-import { Profile } from "../components/Profile";
+import React from 'react'
 
-import Head from "next/head";
+import { CompletedChallenges } from '../components/CompletedChallenges'
+import { CountDown } from '../components/CountDown'
+import { ExperienceBar } from '../components/ExperienceBar'
+import { Profile } from '../components/Profile'
 
-import styles from "../styles/pages/Home.module.css";
+import Head from 'next/head'
 
-export default function Home() {
+import { Container } from '../styles/pages/Home'
+
+const Home: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <Container>
       <Head>
         <title>Inicio | move.it</title>
       </Head>
@@ -24,6 +26,8 @@ export default function Home() {
         </div>
         <div></div>
       </section>
-    </div>
-  );
+    </Container>
+  )
 }
+
+export default Home
