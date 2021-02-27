@@ -7,6 +7,7 @@ import { Profile } from '../components/Profile'
 
 import Head from 'next/head'
 
+import { CountDownProvider } from '../contexts/CountDownContext'
 import { Container } from '../styles/pages/Home'
 import { ChallengeBox } from '../components/ChallengeBox'
 
@@ -19,16 +20,18 @@ const Home: React.FC = () => {
 
       <ExperienceBar />
 
-      <section>
-        <div>
-          <Profile />
-          <CompletedChallenges />
-          <CountDown />
-        </div>
-        <div>
-          <ChallengeBox />
-        </div>
-      </section>
+      <CountDownProvider>
+        <section>
+          <div>
+            <Profile />
+            <CompletedChallenges />
+            <CountDown />
+          </div>
+          <div>
+            <ChallengeBox />
+          </div>
+        </section>
+      </CountDownProvider>
     </Container>
   )
 }
