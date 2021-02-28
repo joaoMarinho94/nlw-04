@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
@@ -15,18 +15,22 @@ import { Container } from '../styles/pages/Home'
 import { ChallengeBox } from '../components/ChallengeBox'
 
 interface HomeProps {
+  children?: ReactNode
   level: number
   currentExperience: number
   challengesCompleted: number
 }
 
-const Home: React.FC = props => {
-  console.log('props: ', props)
+const Home: React.FC = ({
+  challengesCompleted,
+  currentExperience,
+  level
+}: HomeProps) => {
   return (
     <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
+      currentExperience={currentExperience}
+      level={level}
+      challengesCompleted={challengesCompleted}
     >
       <Container>
         <Head>

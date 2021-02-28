@@ -5,10 +5,10 @@ import challenges from '../../challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
 
 interface ChallengesProviderProps {
-  children: ReactNode
   level: number
   currentExperience: number
   challengesCompleted: number
+  children?: ReactNode
 }
 
 interface Challenge {
@@ -31,10 +31,10 @@ interface ChallengesContextData {
 
 export const ChallengesContext = createContext({} as ChallengesContextData)
 
-export function ChallengesProvider({
+export const ChallengesProvider: React.FC = ({
   children,
   ...rest
-}): ChallengesProviderProps {
+}: ChallengesProviderProps) => {
   const [level, setLevel] = useState(rest.level ?? 1)
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0

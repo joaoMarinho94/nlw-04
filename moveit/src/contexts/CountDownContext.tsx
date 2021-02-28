@@ -1,15 +1,5 @@
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState
-} from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { ChallengesContext } from './ChallengesContext'
-
-interface CountDownProviderProps {
-  children: ReactNode
-}
 
 interface CountDownData {
   minutes: number
@@ -24,7 +14,7 @@ let countdownTimeout: number
 
 export const CountDownContext = createContext({} as CountDownData)
 
-export function CountDownProvider({ children }): CountDownProviderProps {
+export const CountDownProvider: React.FC = ({ children }) => {
   const { startNewChallenge } = useContext(ChallengesContext)
 
   const [time, setTime] = useState(0.05 * 60)
