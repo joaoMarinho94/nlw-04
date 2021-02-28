@@ -28,8 +28,8 @@ const Home: React.FC = ({
 }: HomeProps) => {
   return (
     <ChallengesProvider
-      currentExperience={currentExperience}
       level={level}
+      currentExperience={currentExperience}
       challengesCompleted={challengesCompleted}
     >
       <Container>
