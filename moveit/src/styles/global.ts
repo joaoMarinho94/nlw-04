@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export default createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     * {
     margin: 0;
     padding: 0;
@@ -16,6 +16,12 @@ export default createGlobalStyle`
   @media(max-width: 720px){
     html {
       font-size: 87.5%;
+    }
+  }
+
+  @media (max-width: 520px) {
+    html {
+      font-size: 77.5%;
     }
   }
 
@@ -38,15 +44,5 @@ export default createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  .container{
-    height: 100vh;
-    max-width: 992px;
-    margin: 0 auto;
-    padding: 2.5rem 2rem;
-
-    display: flex;
-    flex-direction: column;
   }
 `

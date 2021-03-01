@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useEffect, useState } from 'react'
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 import Cookies from 'js-cookie'
 
 import challenges from '../../challenges.json'
@@ -72,7 +78,7 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
     const challenge = challenges[randomChallengeIndex]
     setActiveChallenge(challenge)
 
-    new Audio('/notification.mp3').play()
+    new Audio('/sounds/notification.mp3').play()
 
     if (Notification.permission === 'granted') {
       new Notification('Novo Desafio', {
@@ -119,4 +125,10 @@ export const ChallengesProvider: React.FC<ChallengesProviderProps> = ({
       {isLevelUpModal && <LevelUpModal />}
     </ChallengesContext.Provider>
   )
+}
+
+export function useProvider(): ChallengesContextData {
+  const context = useContext(ChallengesContext)
+
+  return context
 }

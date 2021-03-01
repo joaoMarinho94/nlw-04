@@ -1,71 +1,69 @@
-import React, { ReactNode } from 'react'
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import useSound from 'use-sound'
+import { FiGithub, FiMoon, FiSun } from 'react-icons/fi'
+import { useTheme } from '../contexts/theme'
 
-import Head from 'next/head'
-import { GetServerSideProps } from 'next'
+import { Container } from '../styles/pages'
+import Input from '../components/Input'
 
-import { ChallengesProvider } from '../contexts/ChallengesContext'
+const Index: React.FC = () => {
+  const { push } = useRouter()
+  const { theme, ToggleTheme } = useTheme()
 
-import { CompletedChallenges } from '../components/CompletedChallenges'
-import { CountDown } from '../components/CountDown'
-import { ExperienceBar } from '../components/ExperienceBar'
-import { Profile } from '../components/Profile'
+  const [username, setUsername] = useState('')
 
-import { CountDownProvider } from '../contexts/CountDownContext'
-import { Container } from '../styles/pages/Home'
-import { ChallengeBox } from '../components/ChallengeBox'
+  const [play] = useSound(
+    theme.title === 'dark' ? '/sounds/turn-off.mp3' : '/sounds/turn-on.mp3'
+  )
 
-interface HomeProps {
-  children?: ReactNode
-  level: number
-  currentExperience: number
-  challengesCompleted: number
-}
+  function handleClick() {
+    ToggleTheme()
+    play()
+  }
 
-const Home: React.FC = ({
-  challengesCompleted,
-  currentExperience,
-  level
-}: HomeProps) => {
+  function handleUsername(e: React.FormEvent<EventTarget>) {
+    e.preventDefault()
+
+    push(`/${username}`)
+  }
+
   return (
-    <ChallengesProvider
-      level={level}
-      currentExperience={currentExperience}
-      challengesCompleted={challengesCompleted}
-    >
-      <Container>
-        <Head>
-          <title>Inicio | move.it</title>
-        </Head>
+    <Container>
+      <section>
+        <div className="left-side">
+          <button type="button" onClick={handleClick}>
+            {theme.title === 'light' ? (
+              <FiMoon size={30} />
+            ) : (
+              <FiSun size={30} />
+            )}
+          </button>
+        </div>
+        <div className="right-side">
+          <img src="white-logo-full.svg" alt="Logo" />
 
-        <ExperienceBar />
+          <div>
+            <strong>Bem-vindo</strong>
 
-        <CountDownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <CountDown />
+            <div className="title-container">
+              <FiGithub size={45} />
+              <span>Faça login com seu Github para começar</span>
             </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountDownProvider>
-      </Container>
-    </ChallengesProvider>
+
+            <form onSubmit={handleUsername}>
+              <Input
+                placeholder="Digite seu username"
+                required
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              />
+            </form>
+          </div>
+        </div>
+      </section>
+    </Container>
   )
 }
 
-export default Home
-
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { level, currentExperience, challengesCompleted } = req.cookies
-
-  return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted)
-    }
-  }
-}
+export default Index

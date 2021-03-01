@@ -29,4 +29,8 @@ export const Container = styled.div`
   div p img {
     margin-right: 0.5rem;
   }
+
+  svg {
+    margin-left: auto;
+  }
 `
